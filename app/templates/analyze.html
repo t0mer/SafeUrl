@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SafeUrl (V{{ version }}) | Scaning: {{ url }}</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="dist/css/all.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.css">
+
+    <script>
+        ipinfo_enabled = '{{ ipinfo_enabled }}';
+        
+     </script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <input type="hidden" id='url' name='url' value='{{ url }}'>
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h5>Analyzing: {{ url }}</h5>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <!-- Profile Image -->
+                            <div class="card card-primary ">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas mr-1"></i>Report Summary</h3>
+                                </div>
+                                <div class="card-body box-profile">
+
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b class="harmless">Harmless</b> <a class="float-right harmless" id="harmless">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b class="malicious">Malicious</b> <a class="float-right malicious" id="malicious">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b class="suspicious">Suspicious</b> <a class="float-right suspicious" id="suspicious">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b class="undetected">Undetected</b> <a class="float-right undetected" id="undetected">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b class="timeout">Timeout</b> <a class="float-right timeout" id="timeout">0</a>
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                            <!-- About Me Box -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas mr-1"></i>Report Info</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <strong><i class="fas fa-calendar mr-1"></i> First submission date</strong>
+
+                                    <p class="text-muted" id="first_submission_date">
+
+                                    </p>
+
+                                    <hr>
+
+                                    <strong><i class="fas fa-calendar mr-1"></i> Last submission date</strong>
+
+                                    <p class="text-muted" id="last_submission_date">
+
+                                    </p>
+
+                                    <hr>
+
+                                    <strong><i class="fas fa-calendar mr-1"></i> Last analysis date</strong>
+
+                                    <p class="text-muted" id="last_analysis_date">
+
+                                    </p>
+
+                                    <hr>
+
+                                    <strong><i class="fas fa-clock mr-1"></i> Times submitted</strong>
+
+                                    <p class="text-muted" id="times_submitted">
+
+                                    </p>
+
+                                    <hr>
+
+                                    <strong><i class="far fa-star"></i> Reputation</strong>
+
+                                    <p class="text-muted" class='reputation' id='reputation'>
+
+                                    </p>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-header p-2">
+                                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="pills-result-tab" data-bs-toggle="pill" data-bs-target="#pills-result" type="button" role="tab" aria-controls="pills-result" aria-selected="true">Scan Results</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="pills-web-tab" data-bs-toggle="pill" data-bs-target="#pills-web" type="button" role="tab" aria-controls="pills-web" aria-selected="false">Website Info</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation" style='display: none;' id="preview-tab">
+                                            <a class="nav-link" id="pills-preview-tab" data-bs-toggle="pill" data-bs-target="#pills-preview" type="button" role="tab" aria-controls="pills-preview" aria-selected="false">Preview</a>
+                                        </li>
+                                       
+                                    </ul>
+
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-result" role="tabpanel" aria-labelledby="pills-result-tab">
+
+                                            <div class="row text-center" style="margin-bottom: 10px;">
+                                                <div style="float: none; margin: 0 auto;">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-success" data-offstyle="outline-success" data-on="Show" data-off="Hiden" id='toggle-clean' style="margin-left: 10px;">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-danger" data-offstyle="outline-danger" data-on="Show " data-off="Hiden" id='toggle-malicious'>
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-warning" data-offstyle="outline-warning" data-on="Show " data-off="Hiden" id='toggle-suspicious'>
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-info" data-offstyle="outline-info" data-on="Show " data-off="Hiden" id='toggle-unrated'>
+
+                                                </div>
+                                            </div>
+                                            <div class="row" id="results" style="height: 700px;overflow-y: scroll;">
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-web" role="tabpanel" aria-labelledby="pills-web-tab">
+                                            <div class="post clearfix">
+                                                <div class="user-block">
+
+                                                    <!-- <span class="username"> -->
+                                                    <i class="fa fa-link" aria-hidden="true" style="margin-right: 5px;"></i><a class='header'>Final URL:</a> <span id='last_final_url'></span>
+                                                    <a class="btn btn-app bg-warning" id='urlchain' style='display: none;' data-toggle="tooltip" data-placement="top" title="View Redirection Chain">
+                                                        <span class="badge bg-info" id='redirects'>0</span>
+                                                        <i class="fas fa-link urlchain"></i>
+                                                    </a>
+                                                </div>
+                                                <!-- /.user-block -->
+                                                <p>Redirection Chain: If the scanned URL redirects to another URL, a small button will appear next to the URL. Clicking it will display the complete redirection chain.
+                                                </p>
+                                                <hr>
+
+                                                <div class="user-block">
+
+                                                    <!-- <span class="username"> -->
+                                                    <i class="fa fa-info" aria-hidden="true" style="margin-right: 5px;"></i><a class='header'>Page Title:</a> <span id='page_title'></span>
+
+                                                    <!-- /.user-block -->
+
+                                                    <hr>
+
+                                                </div>
+
+
+                                                <div class="user-block">
+
+                                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link active" id="headers-tab" data-toggle="tab" href="#headers" role="tab" aria-controls="headers" aria-selected="true">Http response headers</a>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link" id="outgoing_links-tab" data-toggle="tab" href="#outgoing_links" role="tab" aria-controls="outgoing_links" aria-selected="false">Outgoing Links</a>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link" id="html_meta-tab" data-toggle="tab" href="#html_meta" role="tab" aria-controls="html_meta" aria-selected="false">Html Meta</a>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link" id="trackers-tab" data-toggle="tab" href="#trackers" role="tab" aria-controls="trackers" aria-selected="false">Trackers</a>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link" id="ipinfo-tab" data-toggle="tab" href="#ipinfo" role="tab" aria-controls="ipinfo" aria-selected="false" style="display: none;">Ip Info</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content" id="myTabContent">
+                                                        <div class="tab-pane fade show active" id="headers" role="tabpanel" aria-labelledby="headers-tab"></div>
+                                                        <div class="tab-pane fade" id="outgoing_links" role="tabpanel" aria-labelledby="outgoing_links-tab"></div>
+                                                        <div class="tab-pane fade" id="html_meta" role="tabpanel" aria-labelledby="html_meta-tab"></div>
+                                                        <div class="tab-pane fade" id="trackers" role="tabpanel" aria-labelledby="trackers-tab"></div>
+                                                        <div class="tab-pane fade" id="ipinfo" role="tabpanel" aria-labelledby="ipinfo-tab"></div>
+
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-preview" role="tabpanel" aria-labelledby="pills-preview-tab">
+                                            <div class="row" style="height: 710px">
+                                                <img src='' class="img-fluid" id="preview">
+                                            </div>
+
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="float-right d-none d-sm-block">
+                    <b>Version</b> {{ version }}
+                </div>
+                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            </footer>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery -->
+        <script src="dist/js/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="dist/js/bootstrap.bundle.min.js"></script>
+        <!-- <script src="dist/js/bootstrap.min.js"></script> -->
+        <!-- AdminLTE App -->
+        <!-- <script src="dist/js/adminlte.min.js"></script> -->
+        <!-- AdminLTE for demo purposes -->
+        <!-- <script src="dist/js/demo.js"></script> -->
+        <script src="dist/js/utils.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.all.min.js"></script>
+
+
+
+
+
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section">
+
+            </div>
+        </div>
+
+
+
+
+</body>
+
+</html>

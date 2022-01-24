@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SafeUrl - Make sure your link is safe before clicking it (V{{ version }}) </title>
+
+   <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="dist/css/all.min.css"> -->
+   <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+<style>
+  .login-box, .register-box {
+    width: 700px;
+}
+</style>
+
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Enter URL to check</p>
+
+      <form action="analyze" method="get">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Url" name="url" id="url">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-search"></span>
+            </div>
+          </div>
+        </div>
+            <button type="submit" class="btn btn-primary btn-block">Check URL</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="dist/js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="dist/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<!-- <script src="dist/js/adminlte.min.js"></script> -->
+</body>
+</html>

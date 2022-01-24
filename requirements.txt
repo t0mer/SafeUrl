@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+jinja2
+aiofiles
+loguru
+cryptography
+python-multipart
+requests

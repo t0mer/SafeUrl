@@ -6,3 +6,4 @@ loguru
 cryptography
 python-multipart
 requests
+starlette_exporter

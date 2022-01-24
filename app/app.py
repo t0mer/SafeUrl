@@ -34,7 +34,7 @@ if not os.path.exists(PREVIEW_PATH):
 
 
 
-דdef ScanUrl(url):
+def ScanUrl(url):
     try:
         endpoint = 'https://www.virustotal.com/api/v3/urls'
         data = {'url':url}

@@ -137,8 +137,9 @@ def ipinfo(request: Request, url : str =""):
 
 @app.get("/")
 def home(request: Request):
-    logger.info("Loadin default page")
-    return templates.TemplateResponse('index.html', context={'request': request,'version':GetVersionFromFle()})
+    vtotal_enabled = VT_API_KEY != ""
+    logger.info("Loading default page")
+    return templates.TemplateResponse('index.html', context={'request': request,'version':GetVersionFromFle(), 'vtotal_enabled':vtotal_enabled })
 
 
 if __name__ == '__main__':

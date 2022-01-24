@@ -9,11 +9,13 @@
   <!-- <link rel="stylesheet" href="dist/css/all.min.css"> -->
    <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/all.css">
 <style>
   .login-box, .register-box {
     width: 700px;
 }
 </style>
+
 
 </head>
 <body class="hold-transition login-page">
@@ -33,14 +35,19 @@
             </div>
           </div>
         </div>
-            <button type="submit" class="btn btn-primary btn-block">Check URL</button>
+            <button type="submit" id='checkbtn' class="btn btn-primary btn-block">Check URL</button>
           </div>
           <!-- /.col -->
+          <span id='vtwarning' class='warning'>VirusTotal API key is missing from environment, please supply a valid one.</span>
         </div>
+        
       </form>
+      
     </div>
     <!-- /.login-card-body -->
+    
   </div>
+  
 </div>
 <!-- /.login-box -->
 
@@ -50,5 +57,16 @@
 <script src="dist/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <!-- <script src="dist/js/adminlte.min.js"></script> -->
+<script>
+  vtotal_enabled = '{{ vtotal_enabled }}';
+  $(document).ready(function() {
+    if(vtotal_enabled=='False')
+    {
+       $('#vtwarning').show();
+       $('#checkbtn').prop('disabled','disabled');
+    }
+  });
+</script>
+
 </body>
 </html>

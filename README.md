@@ -30,6 +30,11 @@ With SafeUrl, you can get the following information:
 * [IpInfo](https://ipinfo.io/) free API is limited to 50,000 calls/moneh.
 
 ## Usage
+In order to start working with SafeUrl, you need to register for free [VirusTotal)] (https://www.virustotal.com/gui/home/url) account and get a valid Free API Key.
+[![SafeUrl Index Page](https://raw.githubusercontent.com/t0mer/SafeUrl/main/Images/SafeUrl%20-%20VirusTotal%20API.PNG?raw=true)](https://raw.githubusercontent.com/t0mer/SafeUrl/main/Images/SafeUrl%20-%20VirusTotal%20API.PNG?raw=true)
+
+Now, add the VirusTotal API key to the docker environment and you are ready to go.
+
 ### Run from hub
 
 #### docker-compose from hub

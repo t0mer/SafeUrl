@@ -6592,3 +6592,11 @@ h1 {
 	Anyway I don't really mind it. This is a great way to learn so you actually doing the right thing:)
 	Follow me @ihatetomatoes
 */
+
+
+#vtwarning
+{
+    width:80%;
+    margin: 0 auto 10px;
+    display: none;
+}

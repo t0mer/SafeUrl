@@ -53,7 +53,7 @@ services:
 ```
 
 ## Checking URL
-So now, after you installed SafeURL, It's time to givr it a try.
+So now, after you installed SafeURL, It's time to give it a try.
 Navigate to you server address and you shuold see the following screen:
 
 [![SafeUrl Index Page](https://raw.githubusercontent.com/t0mer/SafeUrl/main/Images/SafeUrl%20-%20Index.PNG?raw=true)](https://raw.githubusercontent.com/t0mer/SafeUrl/main/Images/SafeUrl%20-%20Index.PNG?raw=true)

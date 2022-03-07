@@ -199,7 +199,7 @@ function showResults(results) {
         if (this.result == 'clean') {
             element = '<div class="alert alert-success alert-dismissible col-sm-3 alert-sacn r-clean">';
             element = element + '<h6><i class="icon fas fa-check"></i> ' + this.result + '</h6>';
-        } else if (this.result == 'malicious') {
+        } else if (this.result == 'malicious' || this.result == 'phishing' || this.result == 'malware') {
             element = '<div class="alert alert-danger alert-dismissible col-sm-3 alert-sacn r-malicious">';
             element = element + '<h6><i class="icon fas fa-ban"></i> ' + this.result + '</h6>';
         } else if (this.result == 'unrated' || this.result == 'undetected') {

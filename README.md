@@ -8,7 +8,7 @@
 # SafeUrl
 ## Safely check the URL befor clicking it.
 
-With the growing amount of Spam, Fishing, and Mellicues messages, I needed a tool that would help me safely check the URL before I clicked it.
+With the growing amount of Spam, Fishing, and Malicious messages, I needed a tool that would help me safely check the URL before I clicked it.
 Correct, there are other options like VirusTotal, but I wanted something more, like getting a Preview of the final URL or even getting IP Information of the hosted service,
 So I combined them all into one lite and simple application.
 

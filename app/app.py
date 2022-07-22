@@ -1,4 +1,5 @@
 import os, json, requests, uvicorn, time, socket, re
+import numpy as np
 from urllib.parse import urlparse
 import shutil, aiofiles, sys, uuid
 from collections import OrderedDict
@@ -21,8 +22,10 @@ import helpers
 VT_API_KEY = os.getenv('VT_API_KEY')
 
 IPINFO_API_KEY = os.getenv('IPINFO_API_KEY')
+VT_API_ARR  = os.getenv('VT_API_KEY').split(',')
 
-PREVIEW_PATH = '/opt/app/preview'
+
+PREVIEW_PATH = 'preview'
 
 
 if not os.path.exists(PREVIEW_PATH):
@@ -34,11 +37,16 @@ if not os.path.exists(PREVIEW_PATH):
 
 
 
+def get_random_api_key():
+    api_key = np.random.choice(VT_API_ARR, size=1)[0]
+    return str(api_key)
+
 def ScanUrl(url):
     try:
+        get_random_api_key()
         endpoint = 'https://www.virustotal.com/api/v3/urls'
         data = {'url':url}
-        headers = {'x-apikey':VT_API_KEY}
+        headers = {'x-apikey':get_random_api_key()}
         result = requests.post(endpoint, data=data, headers=headers)
         id = result.json()['data']['id'].split('-')[1]
         time.sleep(5)
@@ -49,7 +57,7 @@ def ScanUrl(url):
 
 def GetReport(id):
     logger.info('Getting report for: ' + id)
-    headers = {'x-apikey':VT_API_KEY}
+    headers = {'x-apikey':get_random_api_key()}
     endpoint = 'https://www.virustotal.com/api/v3/urls/' + id
     result =  requests.get(endpoint, headers=headers)
     return result.json()
@@ -106,6 +114,8 @@ app.add_middleware(
 @app.get("/api/preview")
 def preview(request: Request, url : str =""):
     try:
+        url=helpers.check_url(url)
+        logger.debug("Previewing url: " + url)
         Image = 'preview_' + str(uuid.uuid4()) +'.png'
         logger.info("Starting process")
         logger.info("URL to preview is: " + url)
@@ -143,7 +153,7 @@ def home(request: Request):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8081)
 
 
 # analayze

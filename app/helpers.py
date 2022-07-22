@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from urllib.parse import urlparse
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from datetime import date
@@ -23,7 +24,7 @@ def GetBrowser():
     options.add_argument('--ignore-certificate-errors')
     options.add_argument("--window-size=1920,1080")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36")
-    browser = webdriver.Chrome(executable_path='/opt/chromedriver/chromedriver', options=options)
+    browser = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=options)
     return browser
 
 
@@ -44,7 +45,7 @@ def GetMobileBrowser():
 
 ##### Screenshot for mobile view - like webtop #####
 def mobile_screenshot(browser,Image):
-    Image = '/opt/app/preview/' + Image
+    Image = 'preview/' + Image
     if path.exists(Image):
         os.remove(Image)
     logger.info(browser)
@@ -53,7 +54,7 @@ def mobile_screenshot(browser,Image):
 
 def fullpage_screenshot(browser,Image):
     # S = lambda X: browser.execute_script('return document.body.parentNode'+X)
-    Image = '/opt/app/preview/' + Image
+    Image = 'preview/' + Image
     if path.exists(Image):
         os.remove(Image)
     logger.info(browser)
@@ -62,7 +63,7 @@ def fullpage_screenshot(browser,Image):
 
 #### Screenshot for regular view ####
 def largepage_screenshot(browser,Image):
-    Image = '/opt/app/preview/' + Image
+    Image = 'preview/' + Image
     if path.exists(Image):
         os.remove(Image)
     logger.info(browser)
@@ -74,6 +75,14 @@ def largepage_screenshot(browser,Image):
 def log_browser(browser):
     logger.debug(f"Opened page. Url: {browser.current_url}, size: {len(browser.page_source)}")
 
+def check_url(url):
+    """
+    Loads a web page in the current browser session.
+    """
+    schema = urlparse(url).scheme
+    if schema.upper() not in ['HTTP', 'HTTPS']:
+        return "http://" + url
+    return url
 
 def get_clear_browsing_button(browser):
     """Find the "CLEAR BROWSING BUTTON" on the Chrome settings page."""

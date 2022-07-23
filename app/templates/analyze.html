@@ -19,6 +19,15 @@
         ipinfo_enabled = '{{ ipinfo_enabled }}';
         
      </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8TCGMVP4GT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TCGMVP4GT');
+</script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -32,8 +41,8 @@
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h5>Analyzing: {{ url }}</h5>
+                        <div class="col-sm-6" >
+                            <h5>Analyzing: <span>{{ url }}</span></h5>
                         </div>
 
                     </div>

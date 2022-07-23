@@ -1,85 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>SafeUrl - Make sure your link is safe before clicking it (V{{ version }}) </title>
+  <meta name="description" content="With the growing amount of Spam, Fishing, and Malicious messages, I needed a tool that would help me safely check the URL before I clicked it. Correct, there are other options like VirusTotal, but I wanted something more, like getting a Preview of the final URL or even getting IP Information of the hosted service, So I combined them all into one lite and simple application." />
+  <meta name="keywords" content="SafeURL, 2bsafe, SafeBrowsing" />
+  <!-- <meta name="author" content="colorlib.com"> -->
+  <meta property="og:title" content="SafeUrl - Make sure your link is safe before clicking it (V{{ version }})" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="With the growing amount of Spam, Fishing, and Malicious messages, I needed a tool that would help me safely check the URL before I clicked it. Correct, there are other options like VirusTotal, but I wanted something more, like getting a Preview of the final URL or even getting IP Information of the hosted service, So I combined them all into one lite and simple application." />
+  <meta property="og:url" content="https://safeurl.2bsafe.info/" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/t0mer/SafeUrl/main/Images/SafeUrl%20-%20Scan%20Results.PNG" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
 
-   <!-- Font Awesome -->
-  <!-- <link rel="stylesheet" href="dist/css/all.min.css"> -->
-   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="dist/css/all.css">
-<style>
-  .login-box, .register-box {
-    width: 700px;
-}
-</style>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TCGMVP4GT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8TCGMVP4GT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8TCGMVP4GT');
-</script>
-
+    gtag('config', 'G-8TCGMVP4GT');
+  </script>
 
 
 </head>
-<body class="hold-transition login-page">
-  
-<div class="login-box">
-  <div class="content-wrapper">
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Enter URL to check</p>
 
-      <form action="analyze" method="get">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Url" name="url" id="url">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-search"></span>
+<body>
+  <div class="s007">
+    <form>
+      <div class="inner-form">
+        <div class="basic-search">
+          <div class="input-field">
+            <div class="icon-wrap">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z">
+                </path>
+              </svg>
             </div>
+            <input type="text" class="form-control" placeholder="Url" name="url" id="url"  style="border: 1px solid silver;margin-bottom:5px;">
+            
+            <div class="result-count">
+              <div class="input-field">
+                <button type="button" id='checkbtn' class="btn-search">Check URL</button>
+              </div>
+             
+            </div>
+            
           </div>
-        </div>
-            <button type="submit" id='checkbtn' class="btn btn-primary btn-block">Check URL</button>
-          </div>
-          <!-- /.col -->
-          <span id='vtwarning' class='warning'>VirusTotal API key is missing from environment, please supply a valid one.</span>
-        </div>
-        
-      </form>
-    </div>  
-    </div>
-    <!-- /.login-card-body -->
-  
-  </div>
-  
-</div>
-<!-- /.login-box -->
+          <div class="advance-search">
+            
+            <span class="desc">With the growing amount of Spam, Fishing, and Malicious messages, I needed a tool that
+              would help me safely check the URL before I clicked it. Correct, there are other options like VirusTotal,
+              but I wanted something more, like getting a Preview of the final URL or even getting IP Information of the
+              hosted service, So I combined them all into one lite and simple application.</span>
 
-<!-- jQuery -->
+
+
+          </div>
+        </div>
+    </form>
+  </div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 <script src="dist/js/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="dist/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<!-- <script src="dist/js/adminlte.min.js"></script> -->
 <script>
   vtotal_enabled = '{{ vtotal_enabled }}';
-  $(document).ready(function() {
-    if(vtotal_enabled=='False')
-    {
-       $('#vtwarning').show();
-       $('#checkbtn').prop('disabled','disabled');
+  $(document).ready(function () {
+    $('#url').focus();
+    if (vtotal_enabled == 'False') {
+      $('#vtwarning').show();
+      $('#checkbtn').prop('disabled', 'disabled');
     }
+    $('#checkbtn').click(function (e) {
+
+      e.preventDefault();
+      var url = $('#url').val();
+      if (url.length > 0) {
+        window.location.href = 'analyze?url=' + url;
+      }
+      else {
+        $('#url').focus();
+        $('#url').addClass('alerts-border');
+      }
+    });
+
   });
+
 </script>
 
-</body>
 </html>
